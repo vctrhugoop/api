@@ -1,4 +1,4 @@
-import { hash } from 'bcrypt';
+import { hash, compare } from 'bcrypt';
 import AppError from '../utils/AppError.js';
 import sqliteConnection from '../database/sqlite/index.js';
 
