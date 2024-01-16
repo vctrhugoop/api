@@ -1,8 +1,8 @@
-import { verify } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import AppError from '../utils/AppError.js';
 import authConfig from '../configs/auth.js';
 
-export function ensureAuthenticated(request, response, next) {
+export default function ensureAuthenticated(request, response, next) {
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
@@ -12,6 +12,7 @@ export function ensureAuthenticated(request, response, next) {
   const [, token] = authHeader.split(' ');
 
   try {
+    const { verify } = jwt;
     const { sub: user_id } = verify(token, authConfig.jwt.secret);
 
     request.user = {
