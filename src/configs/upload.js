@@ -3,7 +3,7 @@ import multer from 'multer';
 import crypto from 'crypto';
 
 export const TMP_FOLDER = path.resolve(__dirname, '..', '..', 'tmp');
-export const UPLOAD_FOLDER = path.resolve(__dirname, 'upload');
+export const UPLOADS_FOLDER = path.resolve(__dirname, 'upload');
 
 export const MULTER = {
   Storage: multer.diskStorage({
