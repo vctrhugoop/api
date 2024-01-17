@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import uploadConfig from '../configs/upload';
+import uploadConfig from '../configs/upload.js';
 
 export default class DiskStorage {
   async saveFile(file) {
