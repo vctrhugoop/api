@@ -1,12 +1,15 @@
-import { path } from 'path';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import multer from 'multer';
 import crypto from 'crypto';
 
-export const TMP_FOLDER = path.resolve(__dirname, '..', '..', 'tmp');
-export const UPLOADS_FOLDER = path.resolve(__dirname, 'upload');
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-export const MULTER = {
-  Storage: multer.diskStorage({
+const TMP_FOLDER = path.resolve(__dirname, '..', '..', 'tmp');
+const UPLOADS_FOLDER = path.resolve(TMP_FOLDER, 'upload');
+
+const MULTER = {
+  storage: multer.diskStorage({
     destination: TMP_FOLDER,
     filename(request, file, callback) {
       const fileHash = crypto.randomBytes(10).toString('hex');
@@ -15,4 +18,10 @@ export const MULTER = {
       return callback(null, fileName);
     },
   }),
+};
+
+export default {
+  MULTER,
+  TMP_FOLDER,
+  UPLOADS_FOLDER,
 };
